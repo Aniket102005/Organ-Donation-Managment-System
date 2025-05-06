@@ -1,0 +1,47 @@
+<% if (success) { %>
+    <div id="toast" class="fixed top-5 right-5 bg-green-600 text-white px-4 py-3 rounded shadow-md transition-opacity duration-500">
+      ✅ Submission successful!
+    </div>
+  
+    <script>
+      setTimeout(() => {
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 500); // remove after fade
+        }
+      }, 3000); // Hide after 3 seconds
+    </script>
+  <% } %>
+  
+
+<h1 class="text-2xl font-bold mb-4">Create Recipient</h1>
+<form action="/recipient/create" method="POST" class="space-y-4">
+  <input type="text" name="rname" placeholder="Name" class="border p-2 rounded w-full" required />
+  <input type="number" name="age" placeholder="Age" class="border p-2 rounded w-full" required />
+  <input type="text" name="bloodGroup" placeholder="Blood Group" class="border p-2 rounded w-full" required />
+ <!-- Organ Type Dropdown -->
+ <select name="organNeeded" class="border p-2 rounded w-full" required>
+    <option value="">Select Organ</option>
+    <option value="Eye">Eye</option>
+    <option value="Heart">Heart</option>
+    <option value="Kidney">Kidney</option>
+    <option value="Lungs">Lungs</option>
+  </select>
+  <select name="priorityLevel" class="border p-2 rounded w-full" required>
+    <option value="">Select Priority Level</option>
+    <option value="1">1 (High)</option>
+    <option value="2">2 (Medium)</option>
+    <option value="3">3 (Low)</option>
+  </select>
+  <input type="text" name="contactInfo" placeholder="Contact Info" class="border p-2 rounded w-full" required />
+  <!-- Hospital Dropdown -->
+<select name="hospitalID" class="border p-2 rounded w-full" required>
+    <option value="">Select Hospital</option>
+    <% hospitals.forEach(hospital => { %>
+      <option value="<%= hospital._id %>"><%= hospital.name %></option>
+    <% }) %>
+  </select>
+  
+  <button type="submit" class="bg-teal-700 text-white px-4 py-2 rounded">Create Recipient</button>
+</form>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LifeLink - Organ Donation System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex font-sans">
+
+  <!-- Sidebar -->
+  <div class="w-64 bg-teal-800 text-white flex flex-col p-4 space-y-4">
+    <h1 class="text-2xl font-bold mb-6">LifeLink</h1>
+    <nav class="space-y-2">
+      <a href="/dashboard" class="block hover:bg-teal-700 p-2 rounded">Dashboard</a>
+      <a href="/donor" class="block hover:bg-teal-700 p-2 rounded">Donors</a>
+      <a href="/recipient" class="block hover:bg-teal-700 p-2 rounded">Recipients</a>
+      <a href="/match" class="block hover:bg-teal-700 p-2 rounded">Matches</a>
+      <a href="/hospital" class="block hover:bg-teal-700 p-2 rounded">Hospitals</a>
+      <a href="/matches" class="block hover:bg-teal-700 p-2 rounded">Matches</a>
+      <!-- <a href="#" class="block hover:bg-teal-700 p-2 rounded">Reports</a> -->
+    </nav>
+    <div class="mt-auto space-y-2">
+      <a href="#" class="block hover:bg-teal-700 p-2 rounded">Settings</a>
+      <a href="#" class="block hover:bg-teal-700 p-2 rounded">Help</a>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="flex-1 p-6">
+    <!-- Top bar -->
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-semibold">LifeLink Organ Donation System</h2>
+      <input type="text" placeholder="Search..." class="border rounded px-3 py-1 w-64">
+    </div>
+
+    <!-- Injected Content -->
+    <div class="bg-white rounded shadow p-6 text-gray-700">
+      <%- body %>
+    </div>
+  </div>
+</body>
+</html>

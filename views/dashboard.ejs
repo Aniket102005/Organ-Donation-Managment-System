@@ -1,0 +1,31 @@
+<h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+  <!-- Summary Cards -->
+  <div class="bg-white p-4 rounded shadow text-center">
+    <h2 class="text-lg font-semibold text-teal-700">Total Donors</h2>
+    <p class="text-2xl mt-2 font-bold"><%= donorCount %></p>
+  </div>
+  <div class="bg-white p-4 rounded shadow text-center">
+    <h2 class="text-lg font-semibold text-teal-700">Total Recipients</h2>
+    <p class="text-2xl mt-2 font-bold"><%= recipientCount %></p>
+  </div>
+  <div class="bg-white p-4 rounded shadow text-center">
+    <h2 class="text-lg font-semibold text-teal-700">Matches Confirmed</h2>
+    <p class="text-2xl mt-2 font-bold"><%= matchCount %></p>
+  </div>
+  <div class="bg-white p-4 rounded shadow text-center">
+    <h2 class="text-lg font-semibold text-teal-700">Total Hospitals</h2>
+    <p class="text-2xl mt-2 font-bold"><%= hospitalCount %></p>
+  </div>
+</div>
+
+<h2 class="text-xl font-semibold mb-3">Organ Donation Breakdown</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  <% for (let organ in organStats) { %>
+    <div class="bg-gray-100 p-4 rounded text-center">
+      <h3 class="font-semibold"><%= organ %></h3>
+      <p class="text-xl font-bold text-teal-800 mt-1"><%= organStats[organ] %></p>
+    </div>
+  <% } %>
+</div>

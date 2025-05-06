@@ -1,0 +1,81 @@
+<% if (typeof confirmed !== 'undefined' && confirmed === '1') { %>
+    <div id="toast" class="fixed top-5 right-5 bg-green-600 text-white px-4 py-3 rounded shadow-md transition-opacity duration-500">
+      ✅ Match confirmed and saved!
+    </div>
+    <script>
+      setTimeout(() => {
+        const toast = document.getElementById('toast');
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
+    </script>
+  <% } %>
+  
+<h1 class="text-2xl font-bold mb-4">Find Match</h1>
+
+<form action="/match/search" method="POST" class="space-y-4">
+  <!-- Organ Type Dropdown -->
+  <select name="organType" class="border p-2 rounded w-full" required>
+    <option value="">Select Organ</option>
+    <% ['Eye', 'Heart', 'Kidney', 'Lungs'].forEach(organ => { %>
+      <option value="<%= organ %>" <%= organ === (organType || '') ? 'selected' : '' %>><%= organ %></option>
+    <% }) %>
+  </select>
+
+  <!-- Blood Group Input -->
+  <input
+    type="text"
+    name="bloodGroup"
+    value="<%= bloodGroup || '' %>"
+    placeholder="Blood Group"
+    class="border p-2 rounded w-full"
+    required
+  />
+
+  <button type="submit" class="bg-teal-700 text-white px-4 py-2 rounded">Search Match</button>
+</form>
+
+<!-- Match Results -->
+<% if (matchResults && matchResults.length > 0) { %>
+  <h2 class="text-xl font-semibold mt-6 mb-2">Match Results</h2>
+
+  <div class="overflow-x-auto mt-4">
+    <table class="min-w-full border-collapse border border-gray-300 text-sm">
+      <thead class="bg-gray-200 text-gray-700">
+        <tr>
+          <th class="border p-2">Donor Name</th>
+          <th class="border p-2">Donor Age</th>
+          <th class="border p-2">Contact</th>
+          <th class="border p-2">Recipient Name</th>
+          <th class="border p-2">Recipient Age</th>
+          <th class="border p-2">Contact</th>
+          <th class="border p-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% matchResults.forEach(result => { %>
+            <tr class="bg-white hover:bg-gray-50">
+              <td class="border p-2"><%= result.donor.name %></td>
+              <td class="border p-2"><%= result.donor.age %></td>
+              <td class="border p-2"><%= result.donor.contactInfo %></td>
+              <td class="border p-2"><%= result.recipient.rname %></td>
+              <td class="border p-2"><%= result.recipient.age %></td>
+              <td class="border p-2"><%= result.recipient.contactInfo %></td>
+              <td class="border p-2">
+                <form action="/match/confirm" method="POST">
+                  <input type="hidden" name="donorID" value="<%= result.donor._id %>">
+                  <input type="hidden" name="recipientID" value="<%= result.recipient._id %>">
+                  <input type="hidden" name="organType" value="<%= organType %>">
+                  <input type="hidden" name="bloodGroup" value="<%= bloodGroup %>">
+                  <button type="submit" class="bg-green-600 text-white px-3 py-1 rounded">Confirm</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+          
+      </tbody>
+    </table>
+  </div>
+<% } else if (typeof matchResults !== 'undefined') { %>
+  <p class="mt-4 text-red-600">No matches found.</p>
+<% } %>

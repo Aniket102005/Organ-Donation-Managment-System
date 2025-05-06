@@ -1,0 +1,31 @@
+<h1 class="text-2xl font-bold mb-6">Confirmed Matches</h1>
+
+<table class="min-w-full border-collapse border border-gray-300 text-sm">
+  <thead class="bg-gray-200 text-gray-700">
+    <tr>
+      <th class="border p-2">Donor Name</th>
+      <th class="border p-2">Age</th>
+      <th class="border p-2">Contact</th>
+      <th class="border p-2">Recipient Name</th>
+      <th class="border p-2">Age</th>
+      <th class="border p-2">Contact</th>
+      <!-- <th class="border p-2">Date</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% matches.forEach(match => { %>
+      <tr class="bg-white hover:bg-gray-50">
+        <td class="border p-2"><%= match.donorID?.name || 'N/A' %></td>
+        <td class="border p-2"><%= match.donorID?.age || 'N/A' %></td>
+        <td class="border p-2"><%= match.donorID?.contactInfo || 'N/A' %></td>
+        <td class="border p-2"><%= match.recipientID?.rname || 'N/A' %></td>
+        <td class="border p-2"><%= match.recipientID?.age || 'N/A' %></td>
+        <td class="border p-2"><%= match.recipientID?.contactInfo || 'N/A' %></td>
+        <!-- <td class="border p-2">
+            <!-- <%= match.createdAt ? match.createdAt.toDateString() : 'N/A' %> -->
+          <!-- </td> -->
+          
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
