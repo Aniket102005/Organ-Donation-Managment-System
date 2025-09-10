@@ -1,31 +1,35 @@
-<h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+<h1 class="text-4xl font-extrabold mb-10 text-gray-800 animate-fade-in-down">Dashboard</h1>
 
-<div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
-  <!-- Summary Cards -->
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h2 class="text-lg font-semibold text-teal-700">Total Donors</h2>
-    <p class="text-2xl mt-2 font-bold"><%= donorCount %></p>
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+  <div class="bg-gradient-to-br from-teal-400 to-teal-600 text-white p-6 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up delay-100">
+    <h2 class="text-lg font-semibold">Total Donors</h2>
+    <p class="text-4xl mt-2 font-bold"><%= donorCount %></p>
   </div>
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h2 class="text-lg font-semibold text-teal-700">Total Recipients</h2>
-    <p class="text-2xl mt-2 font-bold"><%= recipientCount %></p>
+
+  <div class="bg-gradient-to-br from-indigo-400 to-indigo-600 text-white p-6 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up delay-200">
+    <h2 class="text-lg font-semibold">Total Recipients</h2>
+    <p class="text-4xl mt-2 font-bold"><%= recipientCount %></p>
   </div>
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h2 class="text-lg font-semibold text-teal-700">Matches Confirmed</h2>
-    <p class="text-2xl mt-2 font-bold"><%= matchCount %></p>
+
+  <div class="bg-gradient-to-br from-pink-400 to-pink-600 text-white p-6 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up delay-300">
+    <h2 class="text-lg font-semibold">Matches Confirmed</h2>
+    <p class="text-4xl mt-2 font-bold"><%= matchCount %></p>
   </div>
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h2 class="text-lg font-semibold text-teal-700">Total Hospitals</h2>
-    <p class="text-2xl mt-2 font-bold"><%= hospitalCount %></p>
+
+  <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white p-6 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up delay-400">
+    <h2 class="text-lg font-semibold">Total Hospitals</h2>
+    <p class="text-4xl mt-2 font-bold"><%= hospitalCount %></p>
   </div>
 </div>
 
-<h2 class="text-xl font-semibold mb-3">Organ Donation Breakdown</h2>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Organ Stats Section -->
+<h2 class="text-2xl font-bold text-gray-700 mb-5 animate-fade-in-left">Organ Donation Breakdown</h2>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
   <% for (let organ in organStats) { %>
-    <div class="bg-gray-100 p-4 rounded text-center">
-      <h3 class="font-semibold"><%= organ %></h3>
-      <p class="text-xl font-bold text-teal-800 mt-1"><%= organStats[organ] %></p>
+    <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 text-center border border-gray-100 animate-fade-in-up">
+      <h3 class="text-lg font-semibold text-gray-700"><%= organ %></h3>
+      <p class="text-3xl font-bold text-teal-600 mt-2"><%= organStats[organ] %></p>
     </div>
   <% } %>
 </div>
