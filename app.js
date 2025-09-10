@@ -55,9 +55,22 @@ app.get("/", (req, res) => {
 //   res.redirect("/donor");
 // });
 
+// app.post("/donor/create", async (req, res) => {
+//     const donor = new Donor(req.body);
+//     await donor.save();
+//     res.redirect("/donor?success=1");
+//   });
 app.post("/donor/create", async (req, res) => {
     const donor = new Donor(req.body);
+    
     await donor.save();
+    const organ = new Organ({
+        organType: donor.organType,
+        donorID: donor._id,
+        storedAt: donor.hospitalID
+    });
+    await organ.save();
+    organ.save()
     res.redirect("/donor?success=1");
   });
   
@@ -124,6 +137,15 @@ app.post("/organ/create", async (req, res) => {
   const organ = new Organ(req.body);
   await organ.save();
   res.redirect("/organ");
+// try {
+//     const organ = new Organ(req.body);
+//     await organ.save();
+//     res.redirect("/organ?success=1");
+//   } catch (error) {
+//     console.error("Error creating organ:", error);
+//     res.status(500).send("Error creating organ");
+//   }
+
 });
 
 // Hospital
